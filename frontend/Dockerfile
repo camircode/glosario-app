@@ -17,4 +17,4 @@ RUN pnpm run build
 
 EXPOSE 4321
 
-CMD ["pnpm", "run", "preview", "--", "--host", "--port", "4321"]
+CMD ["node", "./dist/server/entry.mjs"]

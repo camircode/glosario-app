@@ -1,13 +1,12 @@
 import { defineConfig } from 'astro/config';
-import react from '@astrojs/react';
-import tailwind from '@astrojs/tailwind';
-
-import { defineConfig } from 'astro/config';
+import node from '@astrojs/node';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   integrations: [react(), tailwind()],
-  output: 'static',
-  distDir: 'dist',
+  output: 'server',
+  adapter: node({
+    mode: 'standalone'
+  }),
 });
