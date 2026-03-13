@@ -16,20 +16,20 @@ try {
 
 <Layout>
   <div class="min-h-screen">
-    <header class="relative py-8 px-4">
+    <header class="relative py-4 sm:py-6 md:py-8 px-3 sm:px-4">
       <div class="max-w-4xl mx-auto flex items-center justify-between">
-        <div class="flex items-center gap-4">
-          <div class="p-3 bg-amber-800 rounded-lg shadow-lg">
-            <BookOpen className="w-8 h-8 text-amber-100" />
+        <div class="flex items-center gap-2 sm:gap-3 md:gap-4">
+          <div class="p-2 sm:p-3 bg-amber-800 rounded-lg shadow-lg">
+            <BookOpen className="w-6 h-6 sm:w-8 sm:h-8 text-amber-100" />
           </div>
           <div>
             <h1 
-              class="text-3xl font-bold text-amber-900"
+              class="text-xl sm:text-2xl md:text-3xl font-bold text-amber-900 leading-tight"
               style="font-family: 'Caveat', cursive;"
             >
               Glosario de Informática
             </h1>
-            <p class="text-amber-700/60 text-sm mt-1">
+            <p class="hidden sm:block text-amber-700/60 text-xs sm:text-sm mt-0.5 sm:mt-1">
               Tu libreta de términos tecnológicos
             </p>
           </div>
@@ -37,20 +37,20 @@ try {
         
         <a
           href="/admin"
-          class="flex items-center gap-2 px-4 py-2 bg-amber-800 text-amber-100 rounded-lg shadow-lg hover:bg-amber-900 hover:shadow-xl transition-all duration-200"
+          class="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 bg-amber-800 text-amber-100 rounded-lg shadow-lg hover:bg-amber-900 hover:shadow-xl transition-all duration-200 min-w-[44px] min-h-[44px]"
         >
           <Shield className="w-4 h-4" />
-          <span class="text-sm font-medium">Admin</span>
+          <span class="text-sm font-medium hidden sm:inline">Admin</span>
         </a>
       </div>
     </header>
 
-    <main class="pb-12">
+    <main class="pb-8 sm:pb-10 md:pb-12">
       <NotebookCarousel terms={terms} client:load />
     </main>
 
-    <footer class="py-6 text-center">
-      <p class="text-sm text-amber-700/40">
+    <footer class="py-4 sm:py-6 text-center">
+      <p class="text-xs sm:text-sm text-amber-700/40">
         {terms.length} términos en el glosario
       </p>
     </footer>

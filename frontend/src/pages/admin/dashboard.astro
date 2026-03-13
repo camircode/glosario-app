@@ -18,47 +18,47 @@ try {
 <AdminLayout>
   <div class="min-h-screen">
     <nav class="bg-[#fefcf6] border-b border-[#d4cfc3] shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-amber-700 rounded-xl flex items-center justify-center shadow-lg">
-              <BookOpen className="w-5 h-5 text-amber-100" />
+      <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
+        <div class="flex items-center justify-between h-14 sm:h-16">
+          <div class="flex items-center gap-2 sm:gap-3">
+            <div class="w-8 h-8 sm:w-10 sm:h-10 bg-amber-700 rounded-xl flex items-center justify-center shadow-lg">
+              <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-amber-100" />
             </div>
-            <span class="font-semibold text-[#2c241b] text-lg" style="font-family: 'Caveat', cursive;">Panel Admin</span>
+            <span class="font-semibold text-[#2c241b] text-base sm:text-lg" style="font-family: 'Caveat', cursive;">Panel Admin</span>
           </div>
           
-          <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2 sm:gap-4">
             <a
               href="/"
               target="_blank"
-              class="flex items-center gap-2 px-4 py-2 text-amber-700/60 hover:text-amber-800 transition-colors"
+              class="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-4 py-2 text-amber-700/60 hover:text-amber-800 transition-colors min-w-[44px] min-h-[44px]"
             >
               <ExternalLink className="w-4 h-4" />
-              <span class="text-sm">Ver Glosario</span>
+              <span class="hidden sm:inline text-sm">Ver Glosario</span>
             </a>
             
             <button
               id="logoutBtn"
-              class="flex items-center gap-2 px-4 py-2 bg-amber-700 hover:bg-amber-800 text-white rounded-xl transition-all"
+              class="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-4 py-2 bg-amber-700 hover:bg-amber-800 text-white rounded-xl transition-all min-w-[44px] min-h-[44px]"
             >
               <LogOut className="w-4 h-4" />
-              <span class="text-sm">Cerrar sesión</span>
+              <span class="hidden sm:inline text-sm">Cerrar sesión</span>
             </button>
           </div>
         </div>
       </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div class="flex items-center justify-between mb-8">
+    <main class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-4 sm:py-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8">
         <div>
-          <h1 class="text-3xl font-bold text-[#2c241b] mb-2" style="font-family: 'Caveat', cursive;">Gestión de Términos</h1>
-          <p class="text-amber-700/60">{terms.length} términos en el glosario</p>
+          <h1 class="text-2xl sm:text-3xl font-bold text-[#2c241b] mb-1" style="font-family: 'Caveat', cursive;">Gestión de Términos</h1>
+          <p class="text-amber-700/60 text-sm sm:text-base">{terms.length} términos en el glosario</p>
         </div>
         
         <button
           id="addTermBtn"
-          class="flex items-center gap-2 px-6 py-3 bg-amber-700 hover:bg-amber-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all"
+          class="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-amber-700 hover:bg-amber-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto min-h-[44px]"
         >
           <Plus className="w-5 h-5" />
           <span>Nuevo Término</span>
@@ -72,42 +72,42 @@ try {
       )}
 
       <div class="bg-[#fefcf6] rounded-2xl border border-[#d4cfc3] shadow-sm overflow-hidden">
-        <div class="overflow-x-auto">
-          <table class="w-full">
+        <div class="overflow-x-auto -mx-0">
+          <table class="w-full min-w-[640px]">
             <thead class="bg-[#f5f2e8] border-b border-[#d4cfc3]">
               <tr>
-                <th class="px-6 py-4 text-left text-xs font-medium text-[#2c241b] uppercase tracking-wider">Término</th>
-                <th class="px-6 py-4 text-left text-xs font-medium text-[#2c241b] uppercase tracking-wider">Definición</th>
-                <th class="px-6 py-4 text-left text-xs font-medium text-[#2c241b] uppercase tracking-wider">Imagen</th>
-                <th class="px-6 py-4 text-right text-xs font-medium text-[#2c241b] uppercase tracking-wider">Acciones</th>
+                <th class="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-medium text-[#2c241b] uppercase tracking-wider">Término</th>
+                <th class="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-medium text-[#2c241b] uppercase tracking-wider">Definición</th>
+                <th class="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-medium text-[#2c241b] uppercase tracking-wider">Imagen</th>
+                <th class="px-3 sm:px-6 py-3 sm:py-4 text-right text-xs font-medium text-[#2c241b] uppercase tracking-wider">Acciones</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-[#e8e4d9]">
               {terms.map((term) => (
                 <tr key={term.id} class="hover:bg-[#f5f2e8] transition-colors">
-                  <td class="px-6 py-4">
-                    <div class="font-medium text-[#2c241b]">{term.name}</div>
+                  <td class="px-3 sm:px-6 py-3 sm:py-4">
+                    <div class="font-medium text-[#2c241b] text-sm sm:text-base truncate max-w-[150px] sm:max-w-none">{term.name}</div>
                   </td>
-                  <td class="px-6 py-4">
-                    <div class="text-amber-700/60 text-sm max-w-md truncate">
+                  <td class="px-3 sm:px-6 py-3 sm:py-4">
+                    <div class="text-amber-700/60 text-xs sm:text-sm max-w-[200px] sm:max-w-md truncate">
                       {term.definition}
                     </div>
                   </td>
-                  <td class="px-6 py-4">
+                  <td class="px-3 sm:px-6 py-3 sm:py-4">
                     {term.imageUrl ? (
-                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                         Sí
                       </span>
                     ) : (
-                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
                         No
                       </span>
                     )}
                   </td>
-                  <td class="px-6 py-4 text-right">
-                    <div class="flex items-center justify-end gap-2">
+                  <td class="px-3 sm:px-6 py-3 sm:py-4 text-right">
+                    <div class="flex items-center justify-end gap-1 sm:gap-2">
                       <button
-                        class="edit-btn p-2 text-amber-700 hover:text-amber-800 hover:bg-amber-100 rounded-lg transition-all"
+                        class="edit-btn p-2 sm:p-2.5 text-amber-700 hover:text-amber-800 hover:bg-amber-100 rounded-lg transition-all min-w-[44px] min-h-[44px] flex items-center justify-center"
                         data-id={term.id}
                         data-name={term.name}
                         data-definition={term.definition}
@@ -116,7 +116,7 @@ try {
                         <Edit className="w-4 h-4" />
                       </button>
                       <button
-                        class="delete-btn p-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-all"
+                        class="delete-btn p-2 sm:p-2.5 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-all min-w-[44px] min-h-[44px] flex items-center justify-center"
                         data-id={term.id}
                         data-name={term.name}
                       >
@@ -131,9 +131,9 @@ try {
         </div>
         
         {terms.length === 0 && (
-          <div class="p-12 text-center">
-            <BookOpen className="w-16 h-16 mx-auto mb-4 text-amber-700/30" />
-            <p class="text-[#2c241b] text-lg mb-2">No hay términos aún</p>
+          <div class="p-8 sm:p-12 text-center">
+            <BookOpen className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 text-amber-700/30" />
+            <p class="text-[#2c241b] text-base sm:text-lg mb-2">No hay términos aún</p>
             <p class="text-amber-700/60 text-sm">Haz clic en "Nuevo Término" para agregar uno</p>
           </div>
         )}
@@ -141,47 +141,47 @@ try {
     </main>
   </div>
 
-  <div id="termModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-    <div class="bg-[#fefcf6] rounded-2xl p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-[#d4cfc3]">
-      <h2 id="modalTitle" class="text-2xl font-bold text-[#2c241b] mb-6" style="font-family: 'Caveat', cursive;">Nuevo Término</h2>
+  <div id="termModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4 z-50">
+    <div class="bg-[#fefcf6] rounded-2xl p-4 sm:p-8 max-w-lg w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto shadow-2xl border border-[#d4cfc3]">
+      <h2 id="modalTitle" class="text-xl sm:text-2xl font-bold text-[#2c241b] mb-4 sm:mb-6" style="font-family: 'Caveat', cursive;">Nuevo Término</h2>
       
-      <form id="termForm" class="space-y-6">
+      <form id="termForm" class="space-y-4 sm:space-y-6">
         <input type="hidden" id="termId" />
         
         <div>
-          <label for="termName" class="block text-sm font-medium text-[#2c241b] mb-2">
+          <label for="termName" class="block text-sm font-medium text-[#2c241b] mb-1.5 sm:mb-2">
             Nombre del término *
           </label>
           <input
             type="text"
             id="termName"
             required
-            class="w-full px-4 py-3 bg-[#f5f2e8] border border-[#d4cfc3] rounded-xl text-[#2c241b] placeholder-amber-700/40 focus:outline-none focus:ring-2 focus:ring-amber-700/30"
+            class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-[#f5f2e8] border border-[#d4cfc3] rounded-xl text-[#2c241b] placeholder-amber-700/40 focus:outline-none focus:ring-2 focus:ring-amber-700/30 text-sm sm:text-base"
             placeholder="Ej: Algoritmo"
           />
         </div>
 
         <div>
-          <label for="termDefinition" class="block text-sm font-medium text-[#2c241b] mb-2">
+          <label for="termDefinition" class="block text-sm font-medium text-[#2c241b] mb-1.5 sm:mb-2">
             Definición *
           </label>
           <textarea
             id="termDefinition"
             required
             rows="4"
-            class="w-full px-4 py-3 bg-[#f5f2e8] border border-[#d4cfc3] rounded-xl text-[#2c241b] placeholder-amber-700/40 focus:outline-none focus:ring-2 focus:ring-amber-700/30 resize-none"
+            class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-[#f5f2e8] border border-[#d4cfc3] rounded-xl text-[#2c241b] placeholder-amber-700/40 focus:outline-none focus:ring-2 focus:ring-amber-700/30 resize-none text-sm sm:text-base"
             placeholder="Escribe la definición del término..."
           ></textarea>
         </div>
 
         <div>
-          <label for="termImageUrl" class="block text-sm font-medium text-[#2c241b] mb-2">
+          <label for="termImageUrl" class="block text-sm font-medium text-[#2c241b] mb-1.5 sm:mb-2">
             URL de la imagen
           </label>
           <input
             type="url"
             id="termImageUrl"
-            class="w-full px-4 py-3 bg-[#f5f2e8] border border-[#d4cfc3] rounded-xl text-[#2c241b] placeholder-amber-700/40 focus:outline-none focus:ring-2 focus:ring-amber-700/30"
+            class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-[#f5f2e8] border border-[#d4cfc3] rounded-xl text-[#2c241b] placeholder-amber-700/40 focus:outline-none focus:ring-2 focus:ring-amber-700/30 text-sm sm:text-base"
             placeholder="https://ejemplo.com/imagen.jpg"
           />
           <p class="mt-1 text-xs text-amber-700/60">Dejar vacío si no hay imagen</p>
@@ -189,18 +189,18 @@ try {
 
         <div id="formError" class="hidden p-3 bg-red-100 border border-red-200 rounded-xl text-red-800 text-sm"></div>
 
-        <div class="flex gap-3 pt-4">
+        <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-2 sm:pt-4">
           <button
             type="button"
             id="cancelBtn"
-            class="flex-1 px-4 py-3 bg-[#f5f2e8] hover:bg-[#e8e4d9] text-[#2c241b] rounded-xl transition-all"
+            class="flex-1 px-4 py-3 bg-[#f5f2e8] hover:bg-[#e8e4d9] text-[#2c241b] rounded-xl transition-all text-sm sm:text-base min-h-[44px]"
           >
             Cancelar
           </button>
           <button
             type="submit"
             id="saveBtn"
-            class="flex-1 px-4 py-3 bg-amber-700 hover:bg-amber-800 text-white font-semibold rounded-xl shadow-lg transition-all"
+            class="flex-1 px-4 py-3 bg-amber-700 hover:bg-amber-800 text-white font-semibold rounded-xl shadow-lg transition-all text-sm sm:text-base min-h-[44px]"
           >
             Guardar
           </button>
@@ -209,25 +209,25 @@ try {
     </div>
   </div>
 
-  <div id="deleteModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-    <div class="bg-[#fefcf6] rounded-2xl p-8 max-w-md w-full shadow-2xl border border-[#d4cfc3]">
-      <h2 class="text-2xl font-bold text-[#2c241b] mb-4" style="font-family: 'Caveat', cursive;">Eliminar Término</h2>
+  <div id="deleteModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4 z-50">
+    <div class="bg-[#fefcf6] rounded-2xl p-5 sm:p-8 max-w-md w-full shadow-2xl border border-[#d4cfc3]">
+      <h2 class="text-xl sm:text-2xl font-bold text-[#2c241b] mb-3 sm:mb-4" style="font-family: 'Caveat', cursive;">Eliminar Término</h2>
       
-      <p class="text-amber-700/60 mb-6">
+      <p class="text-amber-700/60 mb-5 sm:mb-6 text-sm sm:text-base">
         ¿Estás seguro de que deseas eliminar <span id="deleteTermName" class="font-semibold text-[#2c241b]"></span>?
         Esta acción no se puede deshacer.
       </p>
 
-      <div class="flex gap-3">
+      <div class="flex flex-col sm:flex-row gap-2 sm:gap-3">
         <button
           id="cancelDeleteBtn"
-          class="flex-1 px-4 py-3 bg-[#f5f2e8] hover:bg-[#e8e4d9] text-[#2c241b] rounded-xl transition-all"
+          class="flex-1 px-4 py-3 bg-[#f5f2e8] hover:bg-[#e8e4d9] text-[#2c241b] rounded-xl transition-all text-sm sm:text-base min-h-[44px]"
         >
           Cancelar
         </button>
         <button
           id="confirmDeleteBtn"
-          class="flex-1 px-4 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl shadow-lg transition-all"
+          class="flex-1 px-4 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl shadow-lg transition-all text-sm sm:text-base min-h-[44px]"
         >
           Eliminar
         </button>
