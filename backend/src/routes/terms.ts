@@ -16,7 +16,7 @@ const app = new Hono();
 
 app.get("/", async (c) => {
   const allTerms = await db.query.terms.findMany({
-    orderBy: [asc(terms.name)],
+    orderBy: [sql`LOWER(${terms.name})`],
   });
   return c.json(allTerms);
 });

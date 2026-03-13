@@ -65,16 +65,21 @@ export default function NotebookCarousel({ terms }: NotebookCarouselProps) {
 
   const pageVariants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 100 : -100,
+      x: direction > 0 ? 60 : -60,
       opacity: 0,
+      scale: 0.95,
     }),
     center: {
       x: 0,
       opacity: 1,
+      scale: 1,
+      zIndex: 1,
     },
     exit: (direction: number) => ({
-      x: direction > 0 ? -100 : 100,
+      x: direction > 0 ? -60 : 60,
       opacity: 0,
+      scale: 0.95,
+      zIndex: 0,
     }),
   };
 
@@ -92,12 +97,12 @@ export default function NotebookCarousel({ terms }: NotebookCarouselProps) {
   return (
     <div className="relative max-w-4xl mx-auto px-2 sm:px-4 py-4 md:py-8" ref={containerRef}>
       <div 
-        className="relative h-[60vh] sm:h-[65vh] md:h-[70vh] perspective-1000"
+        className="relative h-[60vh] sm:h-[65vh] md:h-[70vh]"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <AnimatePresence mode="wait" custom={direction}>
+        <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={currentTerm.id}
             custom={direction}
@@ -107,9 +112,9 @@ export default function NotebookCarousel({ terms }: NotebookCarouselProps) {
             exit="exit"
             transition={{
               x: { type: 'spring', stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 },
+              opacity: { duration: 0.15 },
             }}
-            className="absolute inset-0"
+            className="absolute inset-0 w-full h-full"
           >
             <div className="h-full bg-[#fefcf6] rounded-lg shadow-2xl overflow-hidden border border-[#d4cfc3]">
               {/* Notebook lines - hidden on mobile */}
