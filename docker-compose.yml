@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   postgres:
     image: postgres:18-alpine
@@ -16,7 +14,7 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - ${NETWORK_NAME:-web}
+      - dokploy-network
 
   backend:
     build:
@@ -37,12 +35,12 @@ services:
         condition: service_healthy
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.${BACKEND_ROUTER_NAME:-glosario-backend}.rule=Host(`${BACKEND_HOST}`)"
-      - "traefik.http.routers.${BACKEND_ROUTER_NAME:-glosario-backend}.entrypoints=websecure"
-      - "traefik.http.routers.${BACKEND_ROUTER_NAME:-glosario-backend}.tls.certresolver=letsencrypt"
-      - "traefik.http.services.${BACKEND_ROUTER_NAME:-glosario-backend}.loadbalancer.server.port=3000"
+      - "traefik.http.routers.backend.rule=Host(`${BACKEND_HOST}`)"
+      - "traefik.http.routers.backend.entrypoints=websecure"
+      - "traefik.http.routers.backend.tls.certresolver=letsencrypt"
+      - "traefik.http.services.backend.loadbalancer.server.port=3000"
     networks:
-      - ${NETWORK_NAME:-web}
+      - dokploy-network
 
   frontend:
     build:
@@ -57,16 +55,16 @@ services:
       - backend
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.${FRONTEND_ROUTER_NAME:-glosario-frontend}.rule=Host(`${FRONTEND_HOST}`)"
-      - "traefik.http.routers.${FRONTEND_ROUTER_NAME:-glosario-frontend}.entrypoints=websecure"
-      - "traefik.http.routers.${FRONTEND_ROUTER_NAME:-glosario-frontend}.tls.certresolver=letsencrypt"
-      - "traefik.http.services.${FRONTEND_ROUTER_NAME:-glosario-frontend}.loadbalancer.server.port=4321"
+      - "traefik.http.routers.frontend.rule=Host(`${FRONTEND_HOST}`)"
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.routers.frontend.tls.certresolver=letsencrypt"
+      - "traefik.http.services.frontend.loadbalancer.server.port=4321"
     networks:
-      - ${NETWORK_NAME:-web}
+      - dokploy-network
 
 volumes:
   postgres_data:
 
 networks:
-  web:
+  dokploy-network:
     external: true
