@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:18-alpine
+    container_name: glosario-db
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ${NETWORK_NAME:-web}
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: glosario-backend
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@postgres:5432/${DB_NAME}
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET}
+      BETTER_AUTH_URL: ${BACKEND_URL}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      FRONTEND_URL: ${FRONTEND_URL}
+      CORS_ORIGINS: ${FRONTEND_URL}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${BACKEND_ROUTER_NAME:-glosario-backend}.rule=Host(`${BACKEND_HOST}`)"
+      - "traefik.http.routers.${BACKEND_ROUTER_NAME:-glosario-backend}.entrypoints=websecure"
+      - "traefik.http.routers.${BACKEND_ROUTER_NAME:-glosario-backend}.tls.certresolver=letsencrypt"
+      - "traefik.http.services.${BACKEND_ROUTER_NAME:-glosario-backend}.loadbalancer.server.port=3000"
+    networks:
+      - ${NETWORK_NAME:-web}
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        PUBLIC_API_URL: ${PUBLIC_API_URL}
+    container_name: glosario-frontend
+    environment:
+      PUBLIC_API_URL: ${PUBLIC_API_URL}
+    depends_on:
+      - backend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${FRONTEND_ROUTER_NAME:-glosario-frontend}.rule=Host(`${FRONTEND_HOST}`)"
+      - "traefik.http.routers.${FRONTEND_ROUTER_NAME:-glosario-frontend}.entrypoints=websecure"
+      - "traefik.http.routers.${FRONTEND_ROUTER_NAME:-glosario-frontend}.tls.certresolver=letsencrypt"
+      - "traefik.http.services.${FRONTEND_ROUTER_NAME:-glosario-frontend}.loadbalancer.server.port=4321"
+    networks:
+      - ${NETWORK_NAME:-web}
+
+volumes:
+  postgres_data:
+
+networks:
+  web:
+    external: true

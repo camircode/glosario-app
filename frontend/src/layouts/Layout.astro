@@ -1,0 +1,43 @@
+---
+export const prerender = false;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Glosario de Informática</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Special+Elite&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#f5f2e8] min-h-screen">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --paper-color: #fefcf6;
+    --paper-line: #e8e4d9;
+    --ink-color: #2c241b;
+    --accent-color: #8b4513;
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 8px 40px rgba(0, 0, 0, 0.12);
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Special Elite', cursive;
+    color: var(--ink-color);
+    background: linear-gradient(135deg, #f5f2e8 0%, #ebe7db 100%);
+    min-height: 100vh;
+  }
+</style>
