@@ -92,6 +92,25 @@ services:
       - dokploy-network
     restart: "no"
 
+  create-admin:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: glosario-create-admin
+    environment:
+      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@postgres:5432/${DB_NAME}
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET}
+      BETTER_AUTH_URL: ${BACKEND_URL}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    command: bun run src/scripts/create-admin.ts
+    networks:
+      - dokploy-network
+    restart: "no"
+
 volumes:
   postgres_data:
 
