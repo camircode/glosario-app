@@ -62,6 +62,36 @@ services:
     networks:
       - dokploy-network
 
+  migrate:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: glosario-migrate
+    environment:
+      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@postgres:5432/${DB_NAME}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: bun run db:migrate
+    networks:
+      - dokploy-network
+    restart: "no"
+
+  seed:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: glosario-seed
+    environment:
+      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@postgres:5432/${DB_NAME}
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    command: bun run src/scripts/seed.ts
+    networks:
+      - dokploy-network
+    restart: "no"
+
 volumes:
   postgres_data:
 

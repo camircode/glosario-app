@@ -11,14 +11,22 @@ export const prerender = false;
     <title>Panel de Administración - Glosario</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Special+Elite&display=swap" rel="stylesheet">
     <style>
+      :root {
+        --paper-color: #fefcf6;
+        --paper-line: #e8e4d9;
+        --ink-color: #2c241b;
+        --accent-color: #8b4513;
+      }
+      
       * { box-sizing: border-box; margin: 0; padding: 0; }
+      
       body {
-        font-family: 'Inter', sans-serif;
-        background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%);
+        font-family: 'Special Elite', cursive;
+        color: var(--ink-color);
+        background: linear-gradient(135deg, #f5f2e8 0%, #ebe7db 100%);
         min-height: 100vh;
-        color: #f8fafc;
       }
     </style>
   </head>

@@ -1,7 +1,6 @@
 ---
 import AdminLayout from '../../layouts/AdminLayout.astro';
-  import { getTerms } from '../../lib/api';
-  import { createTerm, updateTerm, deleteTerm } from '../../lib/api-client';
+import { getTerms } from '../../lib/api';
 import { BookOpen, Plus, LogOut, Trash2, Edit, ExternalLink } from 'lucide-react';
 
 export const prerender = false;
@@ -18,21 +17,21 @@ try {
 
 <AdminLayout>
   <div class="min-h-screen">
-    <nav class="bg-white/10 backdrop-blur-lg border-b border-white/10">
+    <nav class="bg-[#fefcf6] border-b border-[#d4cfc3] shadow-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-indigo-500 rounded-xl flex items-center justify-center shadow-lg">
-              <BookOpen className="w-5 h-5 text-white" />
+            <div class="w-10 h-10 bg-amber-700 rounded-xl flex items-center justify-center shadow-lg">
+              <BookOpen className="w-5 h-5 text-amber-100" />
             </div>
-            <span class="font-semibold text-white text-lg">Panel Admin</span>
+            <span class="font-semibold text-[#2c241b] text-lg" style="font-family: 'Caveat', cursive;">Panel Admin</span>
           </div>
           
           <div class="flex items-center gap-4">
             <a
               href="/"
               target="_blank"
-              class="flex items-center gap-2 px-4 py-2 text-indigo-200 hover:text-white transition-colors"
+              class="flex items-center gap-2 px-4 py-2 text-amber-700/60 hover:text-amber-800 transition-colors"
             >
               <ExternalLink className="w-4 h-4" />
               <span class="text-sm">Ver Glosario</span>
@@ -40,7 +39,7 @@ try {
             
             <button
               id="logoutBtn"
-              class="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-all"
+              class="flex items-center gap-2 px-4 py-2 bg-amber-700 hover:bg-amber-800 text-white rounded-xl transition-all"
             >
               <LogOut className="w-4 h-4" />
               <span class="text-sm">Cerrar sesión</span>
@@ -53,13 +52,13 @@ try {
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div class="flex items-center justify-between mb-8">
         <div>
-          <h1 class="text-3xl font-bold text-white mb-2">Gestión de Términos</h1>
-          <p class="text-indigo-200">{terms.length} términos en el glosario</p>
+          <h1 class="text-3xl font-bold text-[#2c241b] mb-2" style="font-family: 'Caveat', cursive;">Gestión de Términos</h1>
+          <p class="text-amber-700/60">{terms.length} términos en el glosario</p>
         </div>
         
         <button
           id="addTermBtn"
-          class="flex items-center gap-2 px-6 py-3 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all"
+          class="flex items-center gap-2 px-6 py-3 bg-amber-700 hover:bg-amber-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all"
         >
           <Plus className="w-5 h-5" />
           <span>Nuevo Término</span>
@@ -67,40 +66,40 @@ try {
       </div>
 
       {error && (
-        <div class="p-4 bg-red-500/20 border border-red-500/30 rounded-xl text-red-200 mb-6">
+        <div class="p-4 bg-red-100 border border-red-200 rounded-xl text-red-800 mb-6">
           {error}
         </div>
       )}
 
-      <div class="bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 overflow-hidden">
+      <div class="bg-[#fefcf6] rounded-2xl border border-[#d4cfc3] shadow-sm overflow-hidden">
         <div class="overflow-x-auto">
           <table class="w-full">
-            <thead class="bg-white/5 border-b border-white/10">
+            <thead class="bg-[#f5f2e8] border-b border-[#d4cfc3]">
               <tr>
-                <th class="px-6 py-4 text-left text-xs font-medium text-indigo-200 uppercase tracking-wider">Término</th>
-                <th class="px-6 py-4 text-left text-xs font-medium text-indigo-200 uppercase tracking-wider">Definición</th>
-                <th class="px-6 py-4 text-left text-xs font-medium text-indigo-200 uppercase tracking-wider">Imagen</th>
-                <th class="px-6 py-4 text-right text-xs font-medium text-indigo-200 uppercase tracking-wider">Acciones</th>
+                <th class="px-6 py-4 text-left text-xs font-medium text-[#2c241b] uppercase tracking-wider">Término</th>
+                <th class="px-6 py-4 text-left text-xs font-medium text-[#2c241b] uppercase tracking-wider">Definición</th>
+                <th class="px-6 py-4 text-left text-xs font-medium text-[#2c241b] uppercase tracking-wider">Imagen</th>
+                <th class="px-6 py-4 text-right text-xs font-medium text-[#2c241b] uppercase tracking-wider">Acciones</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-white/10">
+            <tbody class="divide-y divide-[#e8e4d9]">
               {terms.map((term) => (
-                <tr key={term.id} class="hover:bg-white/5 transition-colors">
+                <tr key={term.id} class="hover:bg-[#f5f2e8] transition-colors">
                   <td class="px-6 py-4">
-                    <div class="font-medium text-white">{term.name}</div>
+                    <div class="font-medium text-[#2c241b]">{term.name}</div>
                   </td>
                   <td class="px-6 py-4">
-                    <div class="text-indigo-200 text-sm max-w-md truncate">
+                    <div class="text-amber-700/60 text-sm max-w-md truncate">
                       {term.definition}
                     </div>
                   </td>
                   <td class="px-6 py-4">
                     {term.imageUrl ? (
-                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-500/20 text-green-300">
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                         Sí
                       </span>
                     ) : (
-                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-500/20 text-gray-400">
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
                         No
                       </span>
                     )}
@@ -108,7 +107,7 @@ try {
                   <td class="px-6 py-4 text-right">
                     <div class="flex items-center justify-end gap-2">
                       <button
-                        class="edit-btn p-2 text-indigo-300 hover:text-white hover:bg-white/10 rounded-lg transition-all"
+                        class="edit-btn p-2 text-amber-700 hover:text-amber-800 hover:bg-amber-100 rounded-lg transition-all"
                         data-id={term.id}
                         data-name={term.name}
                         data-definition={term.definition}
@@ -117,7 +116,7 @@ try {
                         <Edit className="w-4 h-4" />
                       </button>
                       <button
-                        class="delete-btn p-2 text-red-300 hover:text-red-200 hover:bg-red-500/20 rounded-lg transition-all"
+                        class="delete-btn p-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-all"
                         data-id={term.id}
                         data-name={term.name}
                       >
@@ -133,9 +132,9 @@ try {
         
         {terms.length === 0 && (
           <div class="p-12 text-center">
-            <BookOpen className="w-16 h-16 mx-auto mb-4 text-indigo-300/50" />
-            <p class="text-indigo-200 text-lg mb-2">No hay términos aún</p>
-            <p class="text-indigo-300/60 text-sm">Haz clic en "Nuevo Término" para agregar uno</p>
+            <BookOpen className="w-16 h-16 mx-auto mb-4 text-amber-700/30" />
+            <p class="text-[#2c241b] text-lg mb-2">No hay términos aún</p>
+            <p class="text-amber-700/60 text-sm">Haz clic en "Nuevo Término" para agregar uno</p>
           </div>
         )}
       </div>
@@ -143,65 +142,65 @@ try {
   </div>
 
   <div id="termModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-    <div class="bg-[#1e1b4b] rounded-2xl p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-white/20">
-      <h2 id="modalTitle" class="text-2xl font-bold text-white mb-6">Nuevo Término</h2>
+    <div class="bg-[#fefcf6] rounded-2xl p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-[#d4cfc3]">
+      <h2 id="modalTitle" class="text-2xl font-bold text-[#2c241b] mb-6" style="font-family: 'Caveat', cursive;">Nuevo Término</h2>
       
       <form id="termForm" class="space-y-6">
         <input type="hidden" id="termId" />
         
         <div>
-          <label for="termName" class="block text-sm font-medium text-indigo-200 mb-2">
+          <label for="termName" class="block text-sm font-medium text-[#2c241b] mb-2">
             Nombre del término *
           </label>
           <input
             type="text"
             id="termName"
             required
-            class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            class="w-full px-4 py-3 bg-[#f5f2e8] border border-[#d4cfc3] rounded-xl text-[#2c241b] placeholder-amber-700/40 focus:outline-none focus:ring-2 focus:ring-amber-700/30"
             placeholder="Ej: Algoritmo"
           />
         </div>
 
         <div>
-          <label for="termDefinition" class="block text-sm font-medium text-indigo-200 mb-2">
+          <label for="termDefinition" class="block text-sm font-medium text-[#2c241b] mb-2">
             Definición *
           </label>
           <textarea
             id="termDefinition"
             required
             rows="4"
-            class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 resize-none"
+            class="w-full px-4 py-3 bg-[#f5f2e8] border border-[#d4cfc3] rounded-xl text-[#2c241b] placeholder-amber-700/40 focus:outline-none focus:ring-2 focus:ring-amber-700/30 resize-none"
             placeholder="Escribe la definición del término..."
           ></textarea>
         </div>
 
         <div>
-          <label for="termImageUrl" class="block text-sm font-medium text-indigo-200 mb-2">
+          <label for="termImageUrl" class="block text-sm font-medium text-[#2c241b] mb-2">
             URL de la imagen
           </label>
           <input
             type="url"
             id="termImageUrl"
-            class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            class="w-full px-4 py-3 bg-[#f5f2e8] border border-[#d4cfc3] rounded-xl text-[#2c241b] placeholder-amber-700/40 focus:outline-none focus:ring-2 focus:ring-amber-700/30"
             placeholder="https://ejemplo.com/imagen.jpg"
           />
-          <p class="mt-1 text-xs text-indigo-400">Dejar vacío si no hay imagen</p>
+          <p class="mt-1 text-xs text-amber-700/60">Dejar vacío si no hay imagen</p>
         </div>
 
-        <div id="formError" class="hidden p-3 bg-red-500/20 border border-red-500/30 rounded-xl text-red-200 text-sm"></div>
+        <div id="formError" class="hidden p-3 bg-red-100 border border-red-200 rounded-xl text-red-800 text-sm"></div>
 
         <div class="flex gap-3 pt-4">
           <button
             type="button"
             id="cancelBtn"
-            class="flex-1 px-4 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-all"
+            class="flex-1 px-4 py-3 bg-[#f5f2e8] hover:bg-[#e8e4d9] text-[#2c241b] rounded-xl transition-all"
           >
             Cancelar
           </button>
           <button
             type="submit"
             id="saveBtn"
-            class="flex-1 px-4 py-3 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-xl shadow-lg transition-all"
+            class="flex-1 px-4 py-3 bg-amber-700 hover:bg-amber-800 text-white font-semibold rounded-xl shadow-lg transition-all"
           >
             Guardar
           </button>
@@ -211,24 +210,24 @@ try {
   </div>
 
   <div id="deleteModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-    <div class="bg-[#1e1b4b] rounded-2xl p-8 max-w-md w-full shadow-2xl border border-white/20">
-      <h2 class="text-2xl font-bold text-white mb-4">Eliminar Término</h2>
+    <div class="bg-[#fefcf6] rounded-2xl p-8 max-w-md w-full shadow-2xl border border-[#d4cfc3]">
+      <h2 class="text-2xl font-bold text-[#2c241b] mb-4" style="font-family: 'Caveat', cursive;">Eliminar Término</h2>
       
-      <p class="text-indigo-200 mb-6">
-        ¿Estás seguro de que deseas eliminar <span id="deleteTermName" class="font-semibold text-white"></span>?
+      <p class="text-amber-700/60 mb-6">
+        ¿Estás seguro de que deseas eliminar <span id="deleteTermName" class="font-semibold text-[#2c241b]"></span>?
         Esta acción no se puede deshacer.
       </p>
 
       <div class="flex gap-3">
         <button
           id="cancelDeleteBtn"
-          class="flex-1 px-4 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl transition-all"
+          class="flex-1 px-4 py-3 bg-[#f5f2e8] hover:bg-[#e8e4d9] text-[#2c241b] rounded-xl transition-all"
         >
           Cancelar
         </button>
         <button
           id="confirmDeleteBtn"
-          class="flex-1 px-4 py-3 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-xl shadow-lg transition-all"
+          class="flex-1 px-4 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl shadow-lg transition-all"
         >
           Eliminar
         </button>
